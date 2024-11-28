@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 
 const SearchBar = () =>{
     const [airports,setAirports] = useState([]);
@@ -21,15 +22,14 @@ const SearchBar = () =>{
             //errors
          });
     }
-    
+
     return (
         <div>
             <form>
                 <input type="text" onChange={onSearchTextChange} placeholder="search by name, code or flight number..."></input>
             </form>
-            <button>Search</button>
             <ul>
-                {airports.map((airport) => <li><a href="#">{airport.name}</a></li>)}
+                {airports.map((airport) => <li key={airport.airportId}><Link to={`/airports/${airport.airportId}`}>{airport.name}</Link></li>)}
             </ul>
         </div>
     );

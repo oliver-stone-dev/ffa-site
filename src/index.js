@@ -1,14 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SearchBar from './SearchBar';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/Home';
+import AiportPage from './pages/Airport';
+import WriteReviewPage from './pages/WriteReview';
+import ReviewsPage from './pages/Reviews';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <SearchBar />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage/>}></Route>
+        <Route path="/airports/:id" element={<AiportPage/>}></Route>
+        <Route path="/airports/:id/reviews" element={<ReviewsPage/>}></Route>
+        <Route path="/airports/:id/writereview" element={<WriteReviewPage/>}></Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
