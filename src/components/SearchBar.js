@@ -26,10 +26,10 @@ const SearchBar = () =>{
     return (
         <div>
             <form>
-                <input type="text" onChange={onSearchTextChange} placeholder="search by name, code or flight number..."></input>
+                <input className="searchField" type="text" onChange={onSearchTextChange} placeholder="search by name, code or flight number..."></input>
             </form>
             <ul>
-                {airports.map((airport) => <li key={airport.airportId}><Link to={`/airports/${airport.airportId}`}>{airport.name}</Link></li>)}
+                {airports.map((airport) => <li key={airport.id}><Link to={`/airports/${airport.id}`}>{airport.name}</Link></li>)}
             </ul>
         </div>
     );

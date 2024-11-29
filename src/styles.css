@@ -1,25 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
 
 body {
-  margin: 0;
   font-family: "Alexandria", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: "Alexandria", sans-serif;
+  margin: 0px;
 }
 
 .menuBar {
     font-family: "Alexandria", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .menuBar ul {
     list-style: none;
+    display: flex;
 }
 
 .menuBar ul li{
     float: left;
     padding: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  width: 100%;
+  height: 250px;
+}
+
+.footer {
+
+}
+
+.searchField{
+  width: 300px;
+}
+
+.searchBanner {
+  width: 100%;
+  background-color: #FBBA72;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: auto;
+  width: 50%;
+  background-color: #FBBA72;
 }

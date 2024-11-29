@@ -1,12 +1,14 @@
-import SearchBar from "../components/SearchBar";
-import MenuBar from "../components/MenuBar";
+import HeaderSearch from "../components/HeaderSearch";
 
 const AboutPage = () => {
     return (
         <div>
-            <MenuBar></MenuBar>
-            <SearchBar></SearchBar>
-            <h1>About Page</h1>
+            <HeaderSearch className="header"></HeaderSearch>
+            <div className="content">
+            </div>
+            <div className="footer">
+                <p>privacy policy</p>
+            </div>
         </div>
     );
 }
