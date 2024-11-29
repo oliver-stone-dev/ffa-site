@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+
+body {
+  margin: 0;
+  font-family: "Alexandria", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Alexandria", sans-serif;
+}
+
+.menuBar {
+    font-family: "Alexandria", sans-serif;
+}
+
+.menuBar ul {
+    list-style: none;
+}
+
+.menuBar ul li{
+    float: left;
+    padding: 10px;
+}

@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import SearchBar from './SearchBar';
+import './styles.css';
+import reportWebVitals from './testing/reportWebVitals';
+import SearchBar from './components/SearchBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home';
 import AiportPage from './pages/Airport';
 import WriteReviewPage from './pages/WriteReview';
 import ReviewsPage from './pages/Reviews';
+import AboutPage from './pages/About';
+import LoginPage from './pages/Login';
+import SignupPage from './pages/Signup';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +21,9 @@ root.render(
         <Route path="/airports/:id" element={<AiportPage/>}></Route>
         <Route path="/airports/:id/reviews" element={<ReviewsPage/>}></Route>
         <Route path="/airports/:id/writereview" element={<WriteReviewPage/>}></Route>
+        <Route path="/about" element={<AboutPage/>}></Route>
+        <Route path="/login" element={<LoginPage/>}></Route>
+        <Route path="/signup" element={<SignupPage/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

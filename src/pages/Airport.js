@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../SearchBar";
+import SearchBar from "../components/SearchBar";
 import { useParams } from "react-router-dom";
 
 const AiportPage = () =>{
