@@ -3,7 +3,7 @@ import '../styles.css'
 
 const MenuBar = () => {
     return (
-        <div className='menuBar'>
+        <div className='menu-bar'>
             <ul>
                 <li>
                     <Link to={"/about"}>About</Link>

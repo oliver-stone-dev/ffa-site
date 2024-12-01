@@ -3,7 +3,7 @@ import Logo from "../components/Logo";
 
 const HeaderBasic = ({className}) =>{
     return (
-        <div className={className}>
+        <div className="header">
             <Logo></Logo>
             <MenuBar></MenuBar>
         </div>

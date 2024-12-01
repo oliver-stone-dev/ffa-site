@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom'
+
 const Logo = () =>{
     return (
-        <div className="Logo">
-            <h2>film friendly airports</h2>
+        <div className="logo">
+            <Link to={"/"}>
+                <h2>film friendly airports</h2>
+            </Link>
         </div>
     );
 }

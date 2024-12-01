@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 
-const SearchBar = () =>{
+const SearchBar = ({style}) =>{
     const [airports,setAirports] = useState([]);
 
     const onSearchTextChange = (e) => {
@@ -24,13 +24,13 @@ const SearchBar = () =>{
     }
 
     return (
-        <div>
-            <form>
-                <input className="searchField" type="text" onChange={onSearchTextChange} placeholder="search by name, code or flight number..."></input>
-            </form>
-            <ul>
-                {airports.map((airport) => <li key={airport.id}><Link to={`/airports/${airport.id}`}>{airport.name}</Link></li>)}
-            </ul>
+        <div className="search-bar" style={style} >
+            <textarea onChange={onSearchTextChange} placeholder="search by name, code or flight..."></textarea>
+            <div className="search-results">
+                <ul>
+                    {airports.map((airport) => <li key={airport.id}><Link to={`/airports/${airport.id}`}>{airport.name}</Link></li>)}
+                </ul>
+            </div>
         </div>
     );
 }

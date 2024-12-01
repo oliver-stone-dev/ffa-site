@@ -3,7 +3,7 @@ import HeaderSearch from "../components/HeaderSearch";
 const AboutPage = () => {
     return (
         <div>
-            <HeaderSearch className="header"></HeaderSearch>
+            <HeaderSearch></HeaderSearch>
             <div className="content">
             </div>
             <div className="footer">

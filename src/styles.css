@@ -5,52 +5,152 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0px;
+  background-color: #F9F9F9;
 }
 
-.menuBar {
+/* Components */
+
+.menu-bar {
     font-family: "Alexandria", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.menuBar ul {
+.menu-bar ul {
     list-style: none;
     display: flex;
 }
 
-.menuBar ul li{
+.menu-bar ul li{
     float: left;
-    padding: 10px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
+.logo{
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
+}
+
+
+.search-bar{
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.search-bar textarea{
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 2.0;
+  width: 100%;
+  height: 40px;
+  border: 0px;
+  border-radius: 30px;
+  font-family: "Alexandria", sans-serif;
+  padding-left: 15px;
+  padding-top: 5px;
+  resize: none;
+  min-width: 270px;
+  background-color: #FEFEFA;
+}
+
+.search-bar .search-results {
+  background-color: #FEFEFA;
+  position: absolute;
+  width: 100%;
+  margin-top: 40px;
+  border-radius: 30px;
+}
+
+.search-bar .search-results ul{
+  list-style: none;
+}
+
+.search-bar .search-results ul:empty{
+  list-style: none;
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.terminal-report-widget{
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 15px;
+}
+
+/* Pages */
 
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin: 0;
 }
 
 .content {
   width: 100%;
-  height: 250px;
 }
+
 
 .footer {
 
 }
 
-.searchField{
-  width: 300px;
-}
-
-.searchBanner {
+.search-banner {
   width: 100%;
   background-color: #FBBA72;
+  padding-bottom: 20px;
 }
 
-.searchContainer {
+.search-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin: auto;
   width: 50%;
-  background-color: #FBBA72;
+}
+
+.airport-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+}
+
+.airport-container{
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 15px;
+}
+
+.terminals-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+}
+
+.terminals-section ul{
+  width: 100%;
+}
+
+.review-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+}
+
+.write-review-container{
+  background-color: #ffffff;
+  width: 100%;
+  border-radius: 15px;
 }

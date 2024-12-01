@@ -2,14 +2,19 @@ import MenuBar from "./MenuBar";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 
-const HeaderBasic = ({className}) =>{
+const HeaderSearch = () =>{
+
+    const customStyle = {
+        width: '30%'
+    };
+
     return (
-        <div className={className}>
+        <div className="header">
             <Logo></Logo>
-            <SearchBar></SearchBar>
+            <SearchBar style={customStyle}></SearchBar>
             <MenuBar></MenuBar>
         </div>
     );
 }
 
-export default HeaderBasic;
+export default HeaderSearch;
