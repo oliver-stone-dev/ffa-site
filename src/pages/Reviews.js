@@ -5,6 +5,7 @@ import HeaderSearch from "../components/HeaderSearch";
 import AirportInfoWidget from "../components/AirportInfoWidget.js";
 import { Link } from 'react-router-dom'
 import AirportReviewWidget from "../components/AirportReviewWidget";
+import '../styles.css';
 
 const ReviewsPage = () =>{
 

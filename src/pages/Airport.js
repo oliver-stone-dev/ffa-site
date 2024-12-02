@@ -5,6 +5,7 @@ import HeaderSearch from "../components/HeaderSearch";
 import TerminalReportWidget from "../components/TerminalReportWidget";
 import AirportInfoWidget from "../components/AirportInfoWidget.js";
 import { Link } from 'react-router-dom'
+import '../styles.css';
 
 
 const AiportPage = () =>{
