@@ -1,6 +1,80 @@
+import Logo from "../components/Logo";
+import { useEffect, useState} from "react";
+import { useNavigate, useParams ,Link} from "react-router-dom";
+import { Route, Routes, useLocation} from 'react-router-dom';
+
 const LoginPage = () => {
+
+    const naviation = useNavigate();
+    const location = useLocation();
+    const {email} = location.state || {};
+    const [password,setPassword] = useState("");
+
+    const navigation = useNavigate();
+    
+    const onFormSubmit = (e) =>{
+        e.preventDefault();
+
+        localStorage.removeItem('accessToken');
+        
+        fetch("http://localhost:5115/login",{
+            method: "POST",
+            body: JSON.stringify({
+                email: email,
+                password: password
+            }),
+            headers: {
+                "Content-type": "application/json",
+                "accept": "text/plain",
+            }
+        })
+        .then((response) => {
+            if (!response.ok){
+                setPassword("");
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            localStorage.setItem('accessToken',JSON.stringify(data));
+            navigation("/");
+        })
+        .catch(() =>{
+
+        });
+    }
+
+    const onEmailNull = () =>{
+        naviation('/auth');
+    }
+
+    useEffect(() =>{
+        if (email == null){
+            onEmailNull();
+        }
+    },[]);
+
     return (
-        <h1>Login Page</h1>
+        <div>
+            <div className="header">
+                <Logo></Logo>
+            </div>
+            <div className="content">
+                <div className="login-section">
+                    <div className="login-container">
+                        <h1> Enter your password</h1>
+                        <p>{email}</p>
+                        <form onSubmit={onFormSubmit}>
+                            <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter your password" required></input>
+                            <button type="submit">Login</button>
+                        </form>
+                        <Link to={"/passwordreset"} state={email}>Forget password?</Link>
+                        <p>or</p>
+                        <button>Continue with google</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 

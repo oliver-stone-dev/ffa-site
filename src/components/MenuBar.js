@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import '../styles.css'
+import AccountMenuButton from './AccountMenuButton';
 
 const MenuBar = () => {
     return (
@@ -9,7 +10,7 @@ const MenuBar = () => {
                     <Link to={"/about"}>About</Link>
                 </li>
                 <li>
-                    <Link to={"/login"}>Login</Link>
+                    <AccountMenuButton></AccountMenuButton>
                 </li>
             </ul>
         </div>

@@ -9,8 +9,9 @@ import AiportPage from './pages/Airport';
 import WriteReviewPage from './pages/WriteReview';
 import ReviewsPage from './pages/Reviews';
 import AboutPage from './pages/About';
-import LoginPage from './pages/Login';
+import AuthPage from './pages/Auth';
 import SignupPage from './pages/Signup';
+import LoginPage from './pages/Login';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,8 +23,9 @@ root.render(
         <Route path="/airports/:id/reviews" element={<ReviewsPage/>}></Route>
         <Route path="/airports/:id/writereview" element={<WriteReviewPage/>}></Route>
         <Route path="/about" element={<AboutPage/>}></Route>
-        <Route path="/login" element={<LoginPage/>}></Route>
+        <Route path="/auth" element={<AuthPage/>}></Route>
         <Route path="/signup" element={<SignupPage/>}></Route>
+        <Route path="/login" element={<LoginPage/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
