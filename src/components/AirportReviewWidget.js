@@ -8,7 +8,7 @@ const AirportReviewWidget = ({airportReview}) =>{
 
     const [review,setReview] = useState(airportReview);
     const [terminal, setTerminal] = useState();
- 
+
     return (
         <div className="airport-review-widget">
             <h3>Terminal 2</h3>

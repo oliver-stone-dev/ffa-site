@@ -10,7 +10,7 @@ const AuthPage = () => {
     const onFormSubmit = (e) =>{
         e.preventDefault();
 
-        fetch(`http://localhost:5115/account?` + new URLSearchParams({
+        fetch(`http://localhost:5115/account/exists?` + new URLSearchParams({
             email: emailAddress
         }))
         .then((response) => response.json())
@@ -35,7 +35,11 @@ const AuthPage = () => {
     }
 
     const onEmailDoesntExist = () =>{
-        nextPageNav("/signup");
+        nextPageNav("/signup",{
+            state: {
+                email: emailAddress
+            }
+        });
     }
 
     const onEmailTextChange = (e) =>{

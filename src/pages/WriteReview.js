@@ -36,7 +36,6 @@ const WriteReviewPage = () =>{
         .catch(() =>{
 
         });
-    
     }
     ,[id]);
     

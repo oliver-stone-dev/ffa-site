@@ -8,6 +8,18 @@ const AirportInfoWidget = ({airportToDisplay}) =>{
     const [status,setStatus] = useState(true);
     const [rating,setRating] = useState(4.9);
     const [reviewCount,setReviewCount] = useState(250);
+    const [isLoggedIn, setIsLoggedIn]= useState(false); 
+
+    useEffect (() =>{
+
+        const bearerTokenData = JSON.parse(localStorage.getItem('accessToken'));
+        if (bearerTokenData){
+            setIsLoggedIn(true);
+        }else{
+            setIsLoggedIn(false);
+        }
+        
+    })
 
     return (
         <div className="airport-container">
