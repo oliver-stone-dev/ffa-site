@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar";
 import { useParams } from "react-router-dom";
-import HeaderSearch from "../components/HeaderSearch";
-import TerminalReportWidget from "../components/TerminalReportWidget";
-import AirportInfoWidget from "../components/AirportInfoWidget.js";
 import { Link } from 'react-router-dom'
 import '../styles.css';
+
 import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
 import AccountProvider from "../providers/AccountProvider";
+import TerminalReportWidget from "../components/TerminalReportWidget";
+import AirportInfoWidget from "../components/AirportInfoWidget.js";
+import NavBar from "../components/NavBar";
 
 const AiportPage = () =>{
     
@@ -57,24 +57,22 @@ const AiportPage = () =>{
         return <p>Loading...</p>
     }else{
         return(
-            <div>
+            <div className="content">
                 <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
-                    <HeaderSearch className="header"></HeaderSearch>
-                    <div className="content">
-                        <div className="airport-section">
-                        <AirportInfoWidget airportToDisplay={airport}></AirportInfoWidget>
-                            <div className="airport-menu">
-                                <ul>
-                                    <Link to={`/airports/${id}/`}>Terminals</Link>
-                                    <Link to={`/airports/${id}/reviews`}>Reviews</Link>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="terminals-section">
+                    <NavBar enableSearch={true}></NavBar>
+                    <div className="airport-section">
+                    <AirportInfoWidget airportToDisplay={airport}></AirportInfoWidget>
+                        <div className="airport-menu">
                             <ul>
-                                {terminals.map((terminal) => <TerminalReportWidget key={terminal.id} terminalToReport={terminal}></TerminalReportWidget>)}
+                                <Link to={`/airports/${id}/`}>Terminals</Link>
+                                <Link to={`/airports/${id}/reviews`}>Reviews</Link>
                             </ul>
                         </div>
+                    </div>
+                    <div className="terminals-section">
+                        <ul>
+                            {terminals.map((terminal) => <TerminalReportWidget key={terminal.id} terminalToReport={terminal}></TerminalReportWidget>)}
+                        </ul>
                     </div>
                 </AccountProvider>
                 <div className="footer">

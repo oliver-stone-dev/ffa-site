@@ -53,22 +53,20 @@ const SignupPage = () => {
     },[]);
 
     return (
-        <div>
+        <div className="content">
             <div className="header">
                 <Logo></Logo>
             </div>
-            <div className="content">
-                <div className="login-section">
-                    <div className="login-container">
-                        <h1> Enter a password </h1>
-                        <p>{email}</p>
-                        <form onSubmit={onFormSubmit}>
-                            <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter your password" required></input>
-                            <button type="submit">Create Account</button>
-                        </form>
-                        <p>or</p>
-                        <button>Continue with google</button>
-                    </div>
+            <div className="login-section">
+                <div className="login-container">
+                    <h1> Enter a password </h1>
+                    <p>{email}</p>
+                    <form onSubmit={onFormSubmit}>
+                        <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter your password" required></input>
+                        <button type="submit">Create Account</button>
+                    </form>
+                    <p>or</p>
+                    <button>Continue with google</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../components/SearchBar";
 import { useParams } from "react-router-dom";
 import HeaderSearch from "../components/HeaderSearch";
 import AirportInfoWidget from "../components/AirportInfoWidget.js";
@@ -9,20 +8,19 @@ import '../styles.css';
 import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
 import AccountProvider from "../providers/AccountProvider";
+import NavBar from "../components/NavBar.js";
 
 const ReviewsPage = () =>{
 
     const {id} = useParams();
     const [airport,setAirport] = useState(null);
     const [reviews,setReviews] = useState([]);
-    const [terminals,setTerminals] = useState([]);
     const [isTokenValid,setIsTokenValid] = useState(false);
     const [accountDetails,setAccountDetails] = useState(null);
 
     useEffect(() => {
 
         setAirport(null);
-        setTerminals(null);
         setReviews(null);
 
         const getAccountDetails = async () =>{
@@ -47,13 +45,6 @@ const ReviewsPage = () =>{
 
         });
         
-        fetch(`http://localhost:5115/airports/${id}/terminals`)
-        .then((response) => response.json())
-        .then((data) => setTerminals(data))
-        .catch(() =>{
-
-        });
-
         fetch(`http://localhost:5115/reviews?` + new URLSearchParams({
             airport:parseInt(id),
             terminal:0,
@@ -73,10 +64,9 @@ const ReviewsPage = () =>{
         return <p>Loading...</p>
     }else{
         return (
-                <div>
+                <div className="content">
                     <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
-                        <HeaderSearch className="header"></HeaderSearch>
-                        <div className="content">
+                        <NavBar enableSearch={true}></NavBar>
                             <div className="airport-section">
                                 <AirportInfoWidget airportToDisplay={airport}></AirportInfoWidget>
                                 <div className="airport-menu">
@@ -88,10 +78,9 @@ const ReviewsPage = () =>{
                             </div> 
                             <div className="reviews-section">
                                 <ul>
-                                    {reviews.map((review) => <AirportReviewWidget key={review.id} airportReview={review}></AirportReviewWidget>)}
+                                    {reviews.map((review) => <AirportReviewWidget key={review.id} airportReview={review} airportId={id}></AirportReviewWidget>)}
                                 </ul> 
                             </div>
-                        </div>
                     </AccountProvider>
                     <div className="footer">
                         <p>privacy policy</p>

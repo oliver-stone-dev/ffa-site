@@ -47,21 +47,19 @@ const AuthPage = () => {
     }
 
     return (
-        <div>
+        <div className="content">
             <div className="header">
                 <Logo></Logo>
             </div>
-            <div className="content">
-                <div className="login-section">
-                    <div className="login-container">
-                        <h1>Enter your email</h1>
-                        <form onSubmit={onFormSubmit}>
-                            <input type="email" placeholder="Enter your email" onChange={onEmailTextChange} required></input>
-                            <button type="submit">Sign-up or sign-in</button>
-                        </form>
-                        <p>or</p>
-                        <button>Continue with google</button>
-                    </div>
+            <div className="login-section">
+                <div className="login-container">
+                    <h1>Enter your email</h1>
+                    <form onSubmit={onFormSubmit}>
+                        <input type="email" placeholder="Enter your email" onChange={onEmailTextChange} required></input>
+                        <button type="submit">Sign-up or sign-in</button>
+                    </form>
+                    <p>or</p>
+                    <button>Continue with google</button>
                 </div>
             </div>
         </div>

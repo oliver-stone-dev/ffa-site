@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
 
+
+/********** GLOBAL *********/
+
+*{
+  padding: 0;
+  margin: 0;
+}
+
 body {
   font-family: "Alexandria", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -8,32 +16,193 @@ body {
   background-color: #F9F9F9;
 }
 
-/* Components */
-
-.menu-bar {
-    font-family: "Alexandria", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+.button-link{
+  text-decoration: none;
+  color: #000;
 }
 
-.menu-bar ul {
-    list-style: none;
-    display: flex;
+.button-link:hover{
+  color:#3d3d3d;
 }
 
-.menu-bar ul li{
-    float: left;
-    padding: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+/********** COMPONENTS *********/
+
+.nav-bar{
+  width: 100%;
+}
+
+.nav-bar-main{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  margin: 0;
+  height: 100px;
+}
+
+.nav-bar-left {
+  display: flex;
+  margin: 0px;
+  align-items: center;
+  flex-direction: row;
+  width: 90%;
+}
+
+.nav-bar-left .search-container{
+  margin: 0;
+  padding: 0;
+  display:flex;
+  width: 100%;
+  align-items: center;
+}
+
+.nav-bar-left .search-container-mobile{
+  display: none;
+}
+
+.nav-bar-right{
+  display: flex;
+  margin: 0px;
+  flex-direction: row;
+  padding-right: 10px;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.nav-bar-right ul{
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 120px;
+}
+
+.nav-bar-right ul li{
+  padding-left: 0px;
+}
+
+
+.nav-bar-mobile{
+  width: 100%;
+  padding: 10px;
+  display: none;
+}
+
+.nav-bar-mobile ul{
+  list-style: none;
+  display: flex;
+  margin: 0px;
+  padding: 0px;
+  flex-direction: column;  
+  width: 100%;
+}
+
+.nav-bar-mobile li{
+  border-bottom: #eeeeee;
+  border-width: 2px;
+  border-bottom-style: solid;
+  width: 100%;
+  text-align: center;
+}
+
+.search-container-view{
+  position: absolute;
+  width: 92%;
+  display: flex;
+  align-items: center;
+}
+
+.search-mobile-exit{
+  position: absolute;
+  width: 98%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.menu-icon{
+  display: none;
 }
 
 .logo{
   padding: 0;
   margin: 0;
-  padding-left: 10px;
+  padding-left: 15px;
+  width: 300px;
+  min-width: 270px;
 }
 
+.logo h1{
+  font-size: 24px;
+}
+
+
+@media screen and (max-width: 682px){
+  .nav-bar-main{
+    height: 80px;
+  }
+
+  .nav-bar-right ul{
+    display: none;
+  }
+
+  .menu-icon{
+    padding-left: 20px;
+    display: flex;
+  }
+
+  .nav-bar-left .search-container{
+    display: none;
+  }
+
+  .nav-bar-left .search-container-mobile{
+    margin: 0;
+    padding: 0;
+    display:flex;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .nav-bar-mobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+  }
+
+  .logo{
+    padding: 0;
+    margin: 0;
+    padding-left: 15px;
+    width: 185;
+    min-width: 185px;
+  }
+  
+  .logo h1{
+    font-size: 20px;
+  }
+}
+
+.logo-link{
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  color: #000;
+}
+
+.result-link{
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+  color: #000;
+}
+
+.result-link:hover{
+  color: #383838;
+}
 
 .search-bar{
   width: 100%;
@@ -44,33 +213,45 @@ body {
 .search-bar textarea{
   box-sizing: border-box;
   text-align: left;
-  line-height: 2.0;
+  line-height: 2.5;
   width: 100%;
-  height: 40px;
+  height: 50px;
   border: 0px;
-  border-radius: 30px;
+  border-radius: 10px;
+  border: none;
   font-family: "Alexandria", sans-serif;
-  padding-left: 15px;
-  padding-top: 5px;
+  padding-left: 25px;
+  padding-top: 0;
   resize: none;
-  min-width: 270px;
+  min-width: 250px;
   background-color: #FEFEFA;
+  font-size: 20px;
+  overflow: hidden;
+  outline: none;
 }
 
 .search-bar .search-results {
   background-color: #FEFEFA;
   position: absolute;
   width: 100%;
-  margin-top: 40px;
-  border-radius: 30px;
+  margin-top: 55px;
+  border-radius: 10px;
 }
 
 .search-bar .search-results ul{
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search-bar .search-results li{
+  padding: 10px;
 }
 
 .search-bar .search-results ul:empty{
   list-style: none;
+  text-decoration: none;
   height: 0px;
   margin: 0px;
   padding: 0px;
@@ -88,7 +269,7 @@ body {
   border-radius: 15px;
 }
 
-/* Pages */
+/********** PAGES *********/
 
 .header {
   display: flex;
@@ -96,6 +277,7 @@ body {
   align-items: center;
   padding: 0px;
   margin: 0;
+  height: 100px;
 }
 
 .content {
@@ -107,18 +289,58 @@ body {
 
 }
 
+/* Home Page */
+
+.page-container{
+  width: 1000px;
+}
+
 .search-banner {
   width: 100%;
-  background-color: #FBBA72;
+  background-color: #AFD2E9;
   padding-bottom: 20px;
 }
 
 .search-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   margin: auto;
-  width: 50%;
+  padding-top: 100px;
+  width: 1000px;
+  padding-bottom: 25px;
+}
+
+@media only screen and (max-width: 932px){
+  .search-container{
+    width: 90%;
+  }
+}
+
+.search-container h1{
+  font-size: 3.5em;
+  font-weight: 500;
+  margin: 0px
+}
+
+.search-container h3{
+  font-size: 2em;
+  font-weight: 300;
+  margin: 0px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+@media only screen and (max-width: 932px){
+  .search-container h1{
+    font-size: 2.5em;
+    font-weight: 600;
+  }
+
+  .search-container h3{
+    font-size: 1.5em;
+    font-weight: 350;
+  }
 }
 
 .airport-section{
@@ -126,7 +348,9 @@ body {
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 50%;
+  padding-top: 100px;
+  width: 1000px;
+  padding-bottom: 25px;
 }
 
 .airport-container{
@@ -140,7 +364,8 @@ body {
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 50%;
+  width: 1000px;
+  padding-bottom: 25px;
 }
 
 .terminals-section ul{
@@ -152,10 +377,11 @@ body {
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: 50%;
+  width: 1000px;
+  padding-bottom: 25px;
 }
 
-.review-section ul{
+.reviews-section ul{
   width: 100%;
 }
 

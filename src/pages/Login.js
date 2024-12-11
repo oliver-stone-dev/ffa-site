@@ -55,11 +55,10 @@ const LoginPage = () => {
     },[]);
 
     return (
-        <div>
+        <div className="content">
             <div className="header">
                 <Logo></Logo>
             </div>
-            <div className="content">
                 <div className="login-section">
                     <div className="login-container">
                         <h1> Enter your password</h1>
@@ -73,7 +72,6 @@ const LoginPage = () => {
                         <button>Continue with google</button>
                     </div>
                 </div>
-            </div>
         </div>
     );
 }

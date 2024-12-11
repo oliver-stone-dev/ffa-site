@@ -1,10 +1,11 @@
+import { useState } from "react";
+import { createContext, useEffect } from "react";
 import SearchBar from "../components/SearchBar";
 import HeaderBasic from "../components/HeaderBasic";
-import { createContext, useEffect } from "react";
 import AccountProvider from "../providers/AccountProvider";
-import { useState } from "react";
 import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
+import NavBar from "../components/NavBar";
 
 const HomePage = () =>{
 
@@ -31,17 +32,15 @@ const HomePage = () =>{
     },[])
 
     return (
-        <div>
+        <div className="content">
             <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
-                <HeaderBasic></HeaderBasic>
+                <NavBar enableSearch={false}></NavBar>
             </AccountProvider> 
-            <div className="content">
-                <div className="search-banner">
-                    <div className="search-container">
-                        <h1>flying with film?</h1>
-                        <h3>lets see if your airport is film friendly!</h3>
-                        <SearchBar></SearchBar>
-                    </div>
+            <div className="search-banner">
+                <div className="search-container">
+                    <h1>Flying with film?</h1>
+                    <h3>Lets see if your airport is film friendly!</h3>
+                    <SearchBar id="searchBar"></SearchBar>
                 </div>
             </div>
             <div className="footer">

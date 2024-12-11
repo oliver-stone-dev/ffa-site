@@ -11,6 +11,8 @@ const SearchBar = ({style}) =>{
             setAirports([]);
             return;
         }
+
+
         
         //search api call
         fetch("http://localhost:5115/airports?" + new URLSearchParams({
@@ -28,7 +30,7 @@ const SearchBar = ({style}) =>{
             <textarea onChange={onSearchTextChange} placeholder="search by name, code or flight..."></textarea>
             <div className="search-results">
                 <ul>
-                    {airports.map((airport) => <li key={airport.id}><Link to={`/airports/${airport.id}`}>{airport.name}</Link></li>)}
+                    {airports.map((airport) => <li key={airport.id}><Link className="result-link" to={`/airports/${airport.id}`}>{airport.name}</Link></li>)}
                 </ul>
             </div>
         </div>
