@@ -60,13 +60,13 @@ const SignupPage = () => {
             <div className="login-section">
                 <div className="login-container">
                     <h1> Enter a password </h1>
-                    <p>{email}</p>
-                    <form onSubmit={onFormSubmit}>
+                    <h4>{email}</h4>
+                    <form className="submit-form"  onSubmit={onFormSubmit}>
                         <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter your password" required></input>
-                        <button type="submit">Create Account</button>
+                        <button className="auth-button" type="submit">Create Account</button>
                     </form>
                     <p>or</p>
-                    <button>Continue with google</button>
+                    <button className="auth-button" >Continue with google</button>
                 </div>
             </div>
         </div>

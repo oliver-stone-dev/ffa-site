@@ -11,8 +11,6 @@ const SearchBar = ({style}) =>{
             setAirports([]);
             return;
         }
-
-
         
         //search api call
         fetch("http://localhost:5115/airports?" + new URLSearchParams({

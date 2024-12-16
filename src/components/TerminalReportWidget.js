@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import '../styles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import { useContext } from "react";
 import { AccountContext } from "../context/AccountContext";
 import { ValidTokenContext } from "../context/ValidTokenContext";
 import { useNavigate } from "react-router-dom";
+import checkmark from "../assets/checkmark.png";
+import warning from "../assets/warning.png";
 
 const TerminalReportWidget = ({terminalToReport}) =>{
 
@@ -101,7 +102,7 @@ const TerminalReportWidget = ({terminalToReport}) =>{
 
     const reportButton = (reportTypeId, disabled) =>{
         return(
-            <button onClick={() => onReportClick(reportTypeId)} className="custom-button" disabled={disabled}>
+            <button onClick={() => onReportClick(reportTypeId)} className="custom-button" disabled={true}  >
                 <FontAwesomeIcon icon={faThumbsUp} />YES
             </button>
         );
@@ -109,17 +110,25 @@ const TerminalReportWidget = ({terminalToReport}) =>{
 
     return (
         <div className="terminal-report-widget">
-            <h3>{terminal.name}</h3>
-            <p>Updated: TODAY</p>
-            <h2>CT scanners is use!</h2>
-            <h2>Hand checks allowed!</h2>
-            <div>
-                <p>Have you spotted CT scanners at this terminal?</p>
-                {reportButton(scannerReportType,scannerButtonDisabled)}
-            </div>
-            <div>
-                <p>Does this terminal allow hand checks?</p>
-                {reportButton(checksReportType,checksBtnPDisabled)}
+            <div className="terminal-grid-container">
+                <div className="name-item"><h3>{terminal.name}</h3></div>
+                <div className="updated-item"><p>Updated: TODAY</p></div>
+                <div className="scanner-alert-item">
+                    <img src={warning} alt="warning"></img>
+                    <h2>CT scanners is use!</h2> 
+                </div>
+                <div className="check-alert-item">
+                    <img src={checkmark} alt="checkmark"></img>
+                    <h2>Hand checks allowed!</h2>
+                </div>
+                <div className="scanner-report-item">
+                    <p>Have you spotted CT scanners at this terminal?</p>
+                    {reportButton(scannerReportType,scannerButtonDisabled)}
+                </div>
+                <div className="check-report-item">
+                    <p>Does this terminal allow hand checks?</p>
+                    {reportButton(checksReportType,checksBtnPDisabled)}
+                </div>
             </div>
         </div>
     );

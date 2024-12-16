@@ -51,17 +51,17 @@ const AuthPage = () => {
             <div className="header">
                 <Logo></Logo>
             </div>
-            <div className="login-section">
-                <div className="login-container">
-                    <h1>Enter your email</h1>
-                    <form onSubmit={onFormSubmit}>
-                        <input type="email" placeholder="Enter your email" onChange={onEmailTextChange} required></input>
-                        <button type="submit">Sign-up or sign-in</button>
-                    </form>
-                    <p>or</p>
-                    <button>Continue with google</button>
+                <div className="login-section">
+                    <div className="login-container">
+                        <h3>Enter your email</h3>
+                        <form className="submit-form" onSubmit={onFormSubmit}>
+                            <input type="email" placeholder="Enter your email" onChange={onEmailTextChange} required></input>
+                            <button className="auth-button" type="submit">Sign-up or sign-in</button>
+                        </form>
+                        <p>or</p>
+                        <button className="auth-button" >Continue with google</button>
+                    </div>
                 </div>
-            </div>
         </div>
     );
 }

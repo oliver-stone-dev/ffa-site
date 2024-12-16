@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles.css';
 import reportWebVitals from './testing/reportWebVitals';
-import SearchBar from './components/SearchBar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/Home';
 import AiportPage from './pages/Airport';
@@ -12,6 +11,7 @@ import AboutPage from './pages/About';
 import AuthPage from './pages/Auth';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
+import AccountPage from './pages/Account';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,6 +26,7 @@ root.render(
         <Route path="/auth" element={<AuthPage/>}></Route>
         <Route path="/signup" element={<SignupPage/>}></Route>
         <Route path="/login" element={<LoginPage/>}></Route>
+        <Route path="/account/" element={<AccountPage/>}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

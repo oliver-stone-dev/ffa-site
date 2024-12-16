@@ -62,14 +62,15 @@ const LoginPage = () => {
                 <div className="login-section">
                     <div className="login-container">
                         <h1> Enter your password</h1>
-                        <p>{email}</p>
-                        <form onSubmit={onFormSubmit}>
+                        <h4>{email}</h4>
+                        <form className="submit-form" onSubmit={onFormSubmit}>
                             <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter your password" required></input>
-                            <button type="submit">Login</button>
+                            <button className="auth-button" type="submit">Login</button>
                         </form>
-                        <Link to={"/passwordreset"} state={email}>Forget password?</Link>
                         <p>or</p>
-                        <button>Continue with google</button>
+                        <button className="auth-button" >Continue with google</button>
+                        <br></br>
+                        <Link to={"/passwordreset"} state={email}>Forget password?</Link>
                     </div>
                 </div>
         </div>

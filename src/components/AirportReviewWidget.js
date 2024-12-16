@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import '../styles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { useContext } from 'react';
-import { AccountContext } from '../context/AccountContext';
-import { ValidTokenContext } from '../context/ValidTokenContext';
+import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 
 const AirportReviewWidget = ({airportId, airportReview}) =>{
 
     const [reviewAiportId,setAirportId] = useState(parseInt(airportId));
     const [review, setReview] = useState(airportReview);
     const [terminal, setTerminal] = useState(null);
-    const accountDetails = useContext(AccountContext);
-    const tokenValid = useContext(ValidTokenContext);
+    const [accountName,setAccountName] = useState(null);
+    const [accountReviews,setAccountReviews] = useState(0);
 
     const getFirstOrNull = (terminals) =>{
         if (terminals === null || terminals.length ===0){
@@ -31,7 +29,47 @@ const AirportReviewWidget = ({airportId, airportReview}) =>{
         .catch(() =>{
 
         });
+    
+        fetch(`http://localhost:5115/reviews/${review.id}/details?` + new URLSearchParams({
+            accountId: review.accountId
+        }))
+        .then((response) => response.json())
+        .then((data) =>{
+            setAccountName(data.username);
+            setAccountReviews(data.userReviews);
+        })
+        .catch(() =>{
+
+        });
+
     },[review,reviewAiportId])
+
+    const PostDate = ({datetime}) =>{
+       var reviewDateTime = new Date(datetime);
+       var currentDatetime = new Date();
+
+       console.log(reviewDateTime.getDate());
+
+       if (reviewDateTime.getFullYear() !== currentDatetime.getFullYear()){
+            return (
+                <p className="review-date-year">Over a year ago</p>
+            );
+       }else if (currentDatetime.getMonth() - reviewDateTime.getMonth() > 0){
+            return (
+                <p className="review-date-year">Over a month ago</p>
+            );
+       }else if (currentDatetime.getMonth() - reviewDateTime.getMonth() === 0
+                && (currentDatetime.getDate() - reviewDateTime.getDate() > 7)){
+            return (
+                <p className="review-date-year">This month</p>
+            );
+       }else{
+        return (
+            <p className="review-date-year">This week</p>
+        );
+       }
+    }
+
 
     if (review === null || terminal === null) {
         return <p>Loading...</p>
@@ -39,17 +77,23 @@ const AirportReviewWidget = ({airportId, airportReview}) =>{
     else{
         return (
             <div className="airport-review-widget">
-                <h2>John Doe</h2>
-                <p>4 reviews</p>
-                <p>1 week ago</p>
-                <h4>Rating: {review.rating}</h4>
-                <h2>{terminal.name}</h2>
-                <p>{review.comment}</p>
-
-                {/* <p>Helpful?</p>
-                <button className="custom-button">
-                    <FontAwesomeIcon icon={faThumbsUp} />YES
-                </button> */}
+                <div className="review-grid-container">
+                    <div className="name-item"><h4>{accountName}</h4><p>{accountReviews} reviews</p></div>
+                    <div className="date-item"><PostDate datetime={review.dateTime}></PostDate></div>
+                    <div className="terminal-item"><h3>{terminal.name}</h3></div>
+                    <div className="comment-item"><p>{review.comment}</p></div>
+                    {
+                        (review.recommended) ? 
+                        <div className="rating-item">
+                            <FontAwesomeIcon className="thumbs-up-icon" icon={faThumbsUp} />
+                            <h4>Recommended</h4>
+                        </div>:
+                        <div className="rating-item">
+                            <FontAwesomeIcon className="thumbs-down-icon"  icon={faThumbsDown} />
+                            <h4>Not Recommended</h4>
+                        </div>
+                    }
+                </div>
             </div>
         );
     }

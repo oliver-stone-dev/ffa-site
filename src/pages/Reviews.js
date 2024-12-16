@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import HeaderSearch from "../components/HeaderSearch";
 import AirportInfoWidget from "../components/AirportInfoWidget.js";
 import { Link } from 'react-router-dom'
 import AirportReviewWidget from "../components/AirportReviewWidget";
@@ -26,6 +25,12 @@ const ReviewsPage = () =>{
         const getAccountDetails = async () =>{
             //Verify token
             const bearerTokenData = JSON.parse(localStorage.getItem('accessToken'));
+
+            if (bearerTokenData === null){
+                setIsTokenValid(false);
+                return;
+            }
+
             const isValid = await TokenVerifyService(bearerTokenData.tokenType,bearerTokenData.accessToken);
             setIsTokenValid(isValid);
 
@@ -61,9 +66,10 @@ const ReviewsPage = () =>{
     ,[id]);
 
     if (reviews === null || airport === null) {
-        return <p>Loading...</p>
+        return <></>;
     }else{
         return (
+            <div className="page-container">
                 <div className="content">
                     <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
                         <NavBar enableSearch={true}></NavBar>
@@ -71,8 +77,8 @@ const ReviewsPage = () =>{
                                 <AirportInfoWidget airportToDisplay={airport}></AirportInfoWidget>
                                 <div className="airport-menu">
                                     <ul>
-                                        <Link to={`/airports/${id}/`}>Terminals</Link>
-                                        <Link to={`/airports/${id}/reviews`}>Reviews</Link>
+                                        <Link className="airport-menu-link" to={`/airports/${id}/`}>Terminals</Link>
+                                        <Link className="airport-menu-link-active" to={`/airports/${id}/reviews`}>Reviews</Link>
                                     </ul>
                                 </div>
                             </div> 
@@ -82,10 +88,11 @@ const ReviewsPage = () =>{
                                 </ul> 
                             </div>
                     </AccountProvider>
-                    <div className="footer">
-                        <p>privacy policy</p>
-                    </div>
                 </div>
+                <div className="footer">
+                    <p>privacy policy</p>
+                </div>
+            </div>
         );
     }
 }

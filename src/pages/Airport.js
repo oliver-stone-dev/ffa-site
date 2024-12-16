@@ -25,6 +25,12 @@ const AiportPage = () =>{
         const getAccountDetails = async () =>{
             //Verify token
             const bearerTokenData = JSON.parse(localStorage.getItem('accessToken'));
+
+            if (bearerTokenData === null){
+                setIsTokenValid(false);
+                return;
+            }
+
             const isValid = await TokenVerifyService(bearerTokenData.tokenType,bearerTokenData.accessToken);
             setIsTokenValid(isValid);
 
@@ -54,27 +60,29 @@ const AiportPage = () =>{
     ,[id]);
 
     if (airport === null) {
-        return <p>Loading...</p>
+        return <></>;
     }else{
         return(
-            <div className="content">
-                <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
-                    <NavBar enableSearch={true}></NavBar>
-                    <div className="airport-section">
-                    <AirportInfoWidget airportToDisplay={airport}></AirportInfoWidget>
-                        <div className="airport-menu">
+            <div className="page-container">
+                <div className="content">
+                    <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
+                        <NavBar enableSearch={true}></NavBar>
+                        <div className="airport-section">
+                            <AirportInfoWidget airportToDisplay={airport}></AirportInfoWidget>
+                            <div className="airport-menu">
+                                <ul>
+                                    <Link className="airport-menu-link-active" to={`/airports/${id}/`}>Terminals</Link>
+                                    <Link className="airport-menu-link" to={`/airports/${id}/reviews`}>Reviews</Link>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="terminals-section">
                             <ul>
-                                <Link to={`/airports/${id}/`}>Terminals</Link>
-                                <Link to={`/airports/${id}/reviews`}>Reviews</Link>
+                                {terminals.map((terminal) => <TerminalReportWidget key={terminal.id} terminalToReport={terminal}></TerminalReportWidget>)}
                             </ul>
                         </div>
-                    </div>
-                    <div className="terminals-section">
-                        <ul>
-                            {terminals.map((terminal) => <TerminalReportWidget key={terminal.id} terminalToReport={terminal}></TerminalReportWidget>)}
-                        </ul>
-                    </div>
-                </AccountProvider>
+                    </AccountProvider>
+                </div>
                 <div className="footer">
                     <p>privacy policy</p>
                 </div>

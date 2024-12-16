@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { createContext, useEffect } from "react";
-import SearchBar from "../components/SearchBar";
+import { useState, useEffect } from "react";
+import NavBar from "../components/NavBar";
 import AccountProvider from "../providers/AccountProvider";
 import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
-import NavBar from "../components/NavBar";
+import AccountWidget from "../components/AccountWidget";
+import { useNavigate } from "react-router-dom";
 
-const HomePage = () =>{
+const AccountPage = () =>{
 
     const [isTokenValid,setIsTokenValid] = useState(false);
     const [accountDetails,setAccountDetails] = useState(null);
+    const navigation = useNavigate();
 
     useEffect(() =>{
 
@@ -32,29 +33,32 @@ const HomePage = () =>{
             }            
         }
 
-        getAccountDetails();
+        const success = getAccountDetails();
+        if (success === false){
+            navigation('/auth');
+        }
         
-    },[])
+    },[navigation])
 
+    if (accountDetails === null) {
+        return <p>Loading...</p>
+    }else{
     return (
         <div className="page-container">
             <div className="content">
                 <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
-                    <NavBar enableSearch={false}></NavBar>
-                </AccountProvider> 
-                <div className="search-banner">
-                    <div className="search-container">
-                        <h1>Flying with film?</h1>
-                        <h3>Lets see if your airport is film friendly!</h3>
-                        <SearchBar id="searchBar"></SearchBar>
+                    <NavBar enableSearch={true}></NavBar>
+                    <div className="account-section">
+                        <AccountWidget></AccountWidget>
                     </div>
-                </div>
+                </AccountProvider>
             </div>
             <div className="footer">
                 <p>privacy policy</p>
             </div>
         </div>
-    );
+    )
+    }
 }
 
-export default HomePage;
+export default AccountPage;
