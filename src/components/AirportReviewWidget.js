@@ -70,7 +70,6 @@ const AirportReviewWidget = ({airportId, airportReview}) =>{
        }
     }
 
-
     if (review === null || terminal === null) {
         return <p>Loading...</p>
     }

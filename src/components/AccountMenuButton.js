@@ -12,8 +12,8 @@ const AccountMenuButton = () =>{
         <div>
             { // Check login
                 (tokenValid === true && accountDetails !== null)
-                ? <Link className="button-link" to={`/account`}>{accountDetails.email}</Link>
-                : <Link className="button-link" to={"/auth"}>Login</Link>
+                ? <Link className="standard-link" to={`/account`}>{accountDetails.displayName}</Link>
+                : <Link className="standard-link" to={"/auth"}>Login</Link>
             }
         </div>
     )

@@ -68,7 +68,7 @@ const WriteReviewPage = () =>{
                             <div className="airport-section">
                                 <div className="write-review-info-widget">
                                     <h1>{airport.name}</h1>
-                                    <p>{airport.website}www.heathrow.com</p>
+                                    <p>{airport.website}</p>
                                 </div>
                                 <div className="write-review-menu">
                                     <h2>Write a review</h2>

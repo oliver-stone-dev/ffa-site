@@ -46,7 +46,7 @@ const NavBar = ({enableSearch}) =>{
                 <div class="nav-bar-right">
                     <ul>
                         <li>
-                            <Link className="button-link" to={"/about"}>About</Link>
+                            <Link className="standard-link" to={"/about"}>About</Link>
                         </li>
                         <li>
                             <AccountMenuButton></AccountMenuButton>
@@ -55,12 +55,12 @@ const NavBar = ({enableSearch}) =>{
                     { // check if search enabled
                         (isSearchEnabled) ? 
                         <div className="search-container-mobile">
-                            <Link className="button-link">
+                            <Link className="standard-link">
                                 <FontAwesomeIcon className='menu-icon' icon={faMagnifyingGlass} onClick={onSearchButtonClick}></FontAwesomeIcon>
                             </Link>
                         </div>:<></>
                     }
-                    <Link className="button-link">
+                    <Link className="standard-link">
                         <FontAwesomeIcon className='menu-icon' icon={faBars} onClick={onHamburgerClick}></FontAwesomeIcon>
                     </Link>
                 </div>
@@ -69,7 +69,7 @@ const NavBar = ({enableSearch}) =>{
                     <div className="search-container-view">
                         <SearchBar className="search"></SearchBar>
                         <div className="search-mobile-exit">
-                            <Link className="button-link">
+                            <Link className="standard-link">
                                 <FontAwesomeIcon className='menu-icon' icon={faXmark} onClick={onSearchExitClick}></FontAwesomeIcon>
                             </Link>
                         </div>
@@ -81,7 +81,7 @@ const NavBar = ({enableSearch}) =>{
                 <div class="nav-bar-mobile">
                     <ul>
                         <li>
-                            <Link className="button-link" to={"/about"}>About</Link>
+                            <Link className="standard-link" to={"/about"}>About</Link>
                         </li>
                         <li>
                             <AccountMenuButton></AccountMenuButton>

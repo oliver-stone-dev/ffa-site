@@ -26,7 +26,7 @@ const AccountWidget = () =>{
         <div className="account-widget">
             <div className="account-grid-container">
                 <h1>Hello!</h1>
-                <h3>{accountDetails.email}</h3>
+                <h3>{accountDetails.displayName}</h3>
                 <button onClick={onLogoutClick} className="auth-button">Logout</button>
             </div>
         </div>

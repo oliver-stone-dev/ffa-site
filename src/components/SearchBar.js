@@ -25,7 +25,7 @@ const SearchBar = ({style}) =>{
 
     return (
         <div className="search-bar" style={style} >
-            <textarea onChange={onSearchTextChange} placeholder="search by name, code or flight..."></textarea>
+            <textarea onChange={onSearchTextChange} placeholder="search by name or code"></textarea>
             <div className="search-results">
                 <ul>
                     {airports.map((airport) => <li key={airport.id}><Link className="result-link" to={`/airports/${airport.id}`}>{airport.name}</Link></li>)}

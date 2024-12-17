@@ -8,6 +8,7 @@ import { ValidTokenContext } from "../context/ValidTokenContext";
 import { useNavigate } from "react-router-dom";
 import checkmark from "../assets/checkmark.png";
 import warning from "../assets/warning.png";
+import logoSmall from "../assets/logoSmall.png"
 
 const TerminalReportWidget = ({terminalToReport}) =>{
 
@@ -22,8 +23,10 @@ const TerminalReportWidget = ({terminalToReport}) =>{
     const bearerTokenData = JSON.parse(localStorage.getItem('accessToken'));
     const [scannerReport,setScannerReport] = useState(null);
     const [checkReport,setCheckReport] = useState(null);
-    const [scannerButtonDisabled,setScannerBtnDisabled] = useState(false);
-    const [checksBtnPDisabled,setChecksBtnDisabled] = useState(false);
+    const [scannerButtonChecked,setScannerChecked] = useState(false);
+    const [checkButtonChecked,setCheckChecked] = useState(false);
+    const [airportDataReports, setAirportDataReports] = useState(null);
+    const [userDataReports,setUserDataReports] = useState(null);
 
     useEffect(() => {
 
@@ -36,13 +39,13 @@ const TerminalReportWidget = ({terminalToReport}) =>{
             const scannerReport = await getReport(terminal.id,accountDetails.id,scannerReportType);
             setScannerReport(scannerReport);
             if (scannerReport !== null){
-                setScannerBtnDisabled(true);
+                setScannerChecked(true);
             }
 
             const checkReport = await getReport(terminal.id,accountDetails.id,checksReportType);
             setCheckReport(checkReport);
             if (checkReport !== null){
-                setChecksBtnDisabled(true);
+                setCheckChecked(true);
             }
         }
 
@@ -100,34 +103,91 @@ const TerminalReportWidget = ({terminalToReport}) =>{
             });
     }
 
-    const reportButton = (reportTypeId, disabled) =>{
+    const OkayReport = (text) =>{
         return(
-            <button onClick={() => onReportClick(reportTypeId)} className="custom-button" disabled={true}  >
-                <FontAwesomeIcon icon={faThumbsUp} />YES
-            </button>
+            <div className="report-list-item">
+                <img src={checkmark} alt="checkmark"></img>
+                <p>{text}</p>
+            </div>
         );
+    }
+
+    const WarningReport = (text) =>{
+        return(
+            <div className="report-list-item">
+                <img src={warning} alt="warning"></img>
+                <p>{text}</p>
+            </div>
+        );
+    }
+
+    const ReportDataList = ({airportData}) =>{
+
+        if (airportData === null || airportData === undefined){
+            return (
+                <div className="report-data-list">
+                    {WarningReport("Use caution")}
+                </div>
+            );
+        }else if (airportData.length === 0){
+            return (
+                <div className="report-data-list">
+                    {WarningReport("Use caution")}
+                </div>
+            );
+        }
+        else{
+        return(
+            <div className="report-data-list">
+                {airportData.map((report) => {
+                        if (report.warning === true){
+                            return WarningReport(report.text);
+                        }else{
+                            return OkayReport(report.text);
+                        }
+                    }
+                )}
+            </div>
+        );
+        }
+    }
+
+    const onReportPressed = (e,type) =>{
+        if (e.target.value === "yes"){
+            onReportClick(type);
+        }
     }
 
     return (
         <div className="terminal-report-widget">
             <div className="terminal-grid-container">
                 <div className="name-item"><h3>{terminal.name}</h3></div>
-                <div className="updated-item"><p>Updated: TODAY</p></div>
-                <div className="scanner-alert-item">
-                    <img src={warning} alt="warning"></img>
-                    <h2>CT scanners is use!</h2> 
+                <div className="airport-data-item">
+                    <p>Official Data</p>
+                    <ReportDataList airportData={airportDataReports}></ReportDataList>
                 </div>
-                <div className="check-alert-item">
-                    <img src={checkmark} alt="checkmark"></img>
-                    <h2>Hand checks allowed!</h2>
+                <div className="reports-item">
+                    <div className="our-reports-container">
+                        <img src={logoSmall} alt="small logo"></img>
+                        <p>Our Reports</p>
+                    </div>
+                    <ReportDataList airportData={userDataReports}></ReportDataList>
                 </div>
-                <div className="scanner-report-item">
-                    <p>Have you spotted CT scanners at this terminal?</p>
-                    {reportButton(scannerReportType,scannerButtonDisabled)}
-                </div>
-                <div className="check-report-item">
-                    <p>Does this terminal allow hand checks?</p>
-                    {reportButton(checksReportType,checksBtnPDisabled)}
+                <div className="make-report-item">
+                    <div className="scanner-report-container">
+                        <p>Have you spotted CT scanners at this terminals?</p>
+                        <div className="review-radio-buttons">
+                            <input checked={scannerButtonChecked} onChange={(event) => {onReportPressed(event,scannerReportType)}} id={terminal.name + "radio-btn-scanner"} type="radio" className="radio-input" name={terminal.name + "-scanner"} value="yes"></input>
+                            <label for={terminal.name + "radio-btn-scanner"} className="radio-button"><FontAwesomeIcon icon={faThumbsUp} />Yes</label>
+                        </div>
+                    </div>
+                    <div className="check-report-container">
+                        <p>Have you been denied a hand-check?</p>
+                        <div className="review-radio-buttons">
+                            <input checked={checkButtonChecked} onChange={(event) => {onReportPressed(event,checksReportType)}} id={terminal.name + "radio-btn-checks"} type="radio" className="radio-input" name={terminal.name + "-checks"}value="yes"></input>
+                            <label for={terminal.name + "radio-btn-checks"} className="radio-button"><FontAwesomeIcon icon={faThumbsUp} />Yes</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ const SignupPage = () => {
     const location = useLocation();
     const {email} = location.state || {};
     const [password,setPassword] = useState("");
+    const [username,setUsername] = useState("");
 
     const navigation = useNavigate();
     
@@ -29,13 +30,10 @@ const SignupPage = () => {
         .then((response) => {
             if (!response.ok){
                 setPassword("");
+                setUsername("");
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            navigation("/login",{ 
-                state: {
-                    email: email
-                }
-            });
+            updateDisplayName();
         })
         .catch(() =>{
 
@@ -52,6 +50,33 @@ const SignupPage = () => {
         }
     },[]);
 
+    const updateDisplayName = () =>{
+        fetch("http://localhost:5115/account/displayname", {
+            method: "POST",
+            body : JSON.stringify({
+                email: email,
+                password: password,
+                displayName: username
+            }),
+            headers: {
+                "Content-type": "application/json",
+                "accept": "*/*",
+            }
+        })
+        .then((response) =>{
+            if (!response.ok){
+                setPassword("");
+                setUsername("");
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            navigation("/login",{ 
+                state: {
+                    email: email
+                }
+            });
+        });
+    }
+
     return (
         <div className="content">
             <div className="header">
@@ -59,10 +84,11 @@ const SignupPage = () => {
             </div>
             <div className="login-section">
                 <div className="login-container">
-                    <h1> Enter a password </h1>
+                    <h2>Please enter a username and password</h2>
                     <h4>{email}</h4>
                     <form className="submit-form"  onSubmit={onFormSubmit}>
-                        <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter your password" required></input>
+                        <input type="password" value={password} onChange={(e) => {setPassword(e.target.value)}} placeholder="Enter a password" required></input>
+                        <input type="text" value={username} onChange={(e) => {setUsername(e.target.value)}} placeholder="Enter a username" required></input>
                         <button className="auth-button" type="submit">Create Account</button>
                     </form>
                     <p>or</p>
