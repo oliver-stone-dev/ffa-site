@@ -69,9 +69,7 @@ const NavBar = ({enableSearch}) =>{
                     <div className="search-container-view">
                         <SearchBar className="search"></SearchBar>
                         <div className="search-mobile-exit">
-                            <Link className="standard-link">
-                                <FontAwesomeIcon className='menu-icon' icon={faXmark} onClick={onSearchExitClick}></FontAwesomeIcon>
-                            </Link>
+                            <FontAwesomeIcon className='menu-icon' icon={faXmark} onClick={onSearchExitClick}></FontAwesomeIcon>
                         </div>
                     </div>:<></>  
                 }
