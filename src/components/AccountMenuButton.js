@@ -9,7 +9,7 @@ const AccountMenuButton = () =>{
     const tokenValid = useContext(ValidTokenContext);
 
     return(
-        <div>
+        <div className="account-menu-button">
             { // Check login
                 (tokenValid === true && accountDetails !== null)
                 ? <Link className="standard-link" to={`/account`}>{accountDetails.displayName}</Link>

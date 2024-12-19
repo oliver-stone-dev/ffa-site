@@ -40,6 +40,33 @@ const AiportPage = () =>{
                 setAccountDetails(details);
             }            
         }
+        
+        const updateTerminalSessionData = (terminalData) =>{
+            
+            if (terminalData === null || terminalData.length === 0){
+                sessionStorage.clear('airport');
+                return;
+            }
+
+            const savedSession = sessionStorage.getItem('airport');
+            if (savedSession !== null && savedSession.length > 0){
+                const data = JSON.parse(savedSession);
+                if (data.id !== parseInt(id)){
+                    writeAirportSessiondata(parseInt(id),terminalData);
+                }
+            }else{
+                writeAirportSessiondata(parseInt(id),terminalData);
+            }
+        }
+
+        const writeAirportSessiondata = (airportId, terminalData) =>{
+            const newSession = {id: airportId,terminals: []};
+
+            terminalData.map((terminal) => newSession.terminals.push({id:terminal.id,isOpen:false}));
+            
+            sessionStorage.clear('airport');
+            sessionStorage.setItem('airport',JSON.stringify(newSession));
+        }
 
         getAccountDetails();
     
@@ -52,7 +79,10 @@ const AiportPage = () =>{
 
         fetch(`http://localhost:5115/airports/${id}/terminals`)
         .then((response) => response.json())
-        .then((data) => setTerminals(data))
+        .then((data) => {
+            setTerminals(data);
+            updateTerminalSessionData(data);
+        })
         .catch(() =>{
 
         });

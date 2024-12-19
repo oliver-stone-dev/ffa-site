@@ -33,6 +33,19 @@ const TerminalReportWidget = ({terminalToReport}) =>{
 
     useEffect(() => {
 
+        //get terminal open from session
+        const savedSession = sessionStorage.getItem('airport');
+        if (savedSession !== null && savedSession.length > 0){
+            const data = JSON.parse(savedSession);
+            if (data.id === terminal.airportId){
+                data.terminals.forEach((t) => {
+                    if (t.id === terminal.id){
+                        setWidgetOpen(t.isOpen);
+                    };
+                });
+            }
+        }
+
         fetch("http://localhost:5115/report/alerts?" + new URLSearchParams({
             terminalId: terminal.id
         }).toString())
@@ -191,10 +204,29 @@ const TerminalReportWidget = ({terminalToReport}) =>{
     }
 
     const onOpenPressed = () =>{
+
+        var isOpened = false;
+
         if (widgetOpen){
-            setWidgetOpen(false);
+            isOpened = false;
         }else{
-            setWidgetOpen(true);
+            isOpened = true;
+        }
+
+        setWidgetOpen(isOpened);
+
+        //save widget open to session
+        const sessionData = JSON.parse(sessionStorage.getItem('airport'));
+        if (sessionData !== null){
+            if(sessionData.id === terminal.airportId){
+                sessionData.terminals.forEach((t) => {
+                    if (t.id === terminal.id){
+                        t.isOpen = isOpened;
+                    };
+                });
+            }
+
+            sessionStorage.setItem('airport',JSON.stringify(sessionData));
         }
     }
 
