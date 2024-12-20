@@ -13,7 +13,6 @@ const WriteReviewPage = () =>{
     const [airport,setAirport] = useState(null);
     const [isTokenValid,setIsTokenValid] = useState(false);
     const [accountDetails,setAccountDetails] = useState(null);
-    const [accessToken,setAccessToken] = useState();
     const navigation = useNavigate();
 
     useEffect(() => {
@@ -31,7 +30,6 @@ const WriteReviewPage = () =>{
 
             const isValid = await TokenVerifyService(bearerTokenData.tokenType,bearerTokenData.accessToken);
             setIsTokenValid(isValid);
-            setAccessToken(bearerTokenData);
 
             //Get account details
             if (isValid){

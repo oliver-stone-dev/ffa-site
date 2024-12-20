@@ -6,8 +6,8 @@ import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 
 const AirportReviewWidget = ({airportId, airportReview}) =>{
 
-    const [reviewAiportId,setAirportId] = useState(parseInt(airportId));
-    const [review, setReview] = useState(airportReview);
+    const [reviewAiportId] = useState(parseInt(airportId));
+    const [review] = useState(airportReview);
     const [terminal, setTerminal] = useState(null);
     const [accountName,setAccountName] = useState(null);
     const [accountReviews,setAccountReviews] = useState(0);

@@ -19,15 +19,13 @@ const TerminalReportWidget = ({terminalToReport}) =>{
 
     const navigation = useNavigate();
 
-    const [terminal,setTerminal] = useState(terminalToReport);
+    const [terminal] = useState(terminalToReport);
     const accountDetails = useContext(AccountContext);
     const tokenValid = useContext(ValidTokenContext);
     const bearerTokenData = JSON.parse(localStorage.getItem('accessToken'));
-    const [scannerReport,setScannerReport] = useState(null);
-    const [checkReport,setCheckReport] = useState(null);
     const [scannerButtonChecked,setScannerChecked] = useState(false);
     const [checkButtonChecked,setCheckChecked] = useState(false);
-    const [airportDataReports, setAirportDataReports] = useState(null);
+    const [airportDataReports] = useState(null);
     const [reportAlerts,setReportAlerts] = useState(null);
     const [widgetOpen,setWidgetOpen] = useState(false);
 
@@ -64,13 +62,11 @@ const TerminalReportWidget = ({terminalToReport}) =>{
         const updateReporting = async () =>{
 
             const scannerReport = await getReport(terminal.id,accountDetails.id,scannerReportType);
-            setScannerReport(scannerReport);
             if (scannerReport !== null){
                 setScannerChecked(true);
             }
 
             const checkReport = await getReport(terminal.id,accountDetails.id,checksReportType);
-            setCheckReport(checkReport);
             if (checkReport !== null){
                 setCheckChecked(true);
             }

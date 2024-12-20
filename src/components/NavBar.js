@@ -13,7 +13,7 @@ const NavBar = ({enableSearch}) =>{
 
     const [mobileNavDisplayed,setMobileNavDisplayed] = useState(false);
     const [mobileSearchDisplayed,setMobileSearchDisplayed] = useState(false);
-    const [isSearchEnabled,setIsSearchEnabled] = useState(enableSearch);
+    const [isSearchEnabled] = useState(enableSearch);
 
     const onHamburgerClick =() =>{
         if (mobileNavDisplayed){

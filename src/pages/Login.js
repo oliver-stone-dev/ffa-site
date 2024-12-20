@@ -1,7 +1,7 @@
 import Logo from "../components/Logo";
 import { useEffect, useState} from "react";
-import { useNavigate, useParams ,Link} from "react-router-dom";
-import { Route, Routes, useLocation} from 'react-router-dom';
+import { useNavigate ,Link} from "react-router-dom";
+import { useLocation} from 'react-router-dom';
 
 const LoginPage = () => {
 
@@ -44,15 +44,16 @@ const LoginPage = () => {
         });
     }
 
-    const onEmailNull = () =>{
-        naviation('/auth');
-    }
-
     useEffect(() =>{
+
+        const onEmailNull = () =>{
+            naviation('/auth');
+        }
+
         if (email == null){
             onEmailNull();
         }
-    },[]);
+    },[email, naviation]);
 
     return (
         <div className="content">

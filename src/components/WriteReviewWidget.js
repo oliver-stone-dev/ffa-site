@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TokenVerifyService from "../services/TokenVerifyService"
@@ -7,19 +7,16 @@ import GetAccountDetails from "../services/AccountDetailsService"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import ThumbsUpButton from "./ThumbsUpButton";
 
 const WriteReviewWidget = ({airportToReview}) =>{
 
-    const [airport,setAirport] = useState(airportToReview);
-    const [terminals,setTerminals] = useState(null);
+    const [airport] = useState(airportToReview);
     const [terminalNames,setTerminalNames] = useState([])
     const [reviewText,setReviewText] = useState("");
     const [reviewTerminal,setReviewTerminal] = useState(1);
     const [reviewDateTime,setReviewDateTime] = useState(new Date());
     const [reviewRecommendation,setReviewRecommendation] = useState(false);
     const [submitButtonDisabled,setSubmitDisabled] = useState(true);
-    const [isTokenValid,setIsTokenValid] = useState(false);
     const [accountDetails,setAccountDetails] = useState(null);
     const [accessToken,setAccessToken] = useState();
     const navigation = useNavigate();
@@ -33,12 +30,10 @@ const WriteReviewWidget = ({airportToReview}) =>{
             const bearerTokenData = JSON.parse(localStorage.getItem('accessToken'));
 
             if (bearerTokenData === null){
-                setIsTokenValid(false);
                 return;
             }
 
             const isValid = await TokenVerifyService(bearerTokenData.tokenType,bearerTokenData.accessToken);
-            setIsTokenValid(isValid);
             setAccessToken(bearerTokenData);
 
             //Get account details
@@ -59,7 +54,6 @@ const WriteReviewWidget = ({airportToReview}) =>{
         fetch(`http://localhost:5115/airports/${airport.id}/terminals`)
         .then((response) => response.json())
         .then((data) => {
-            setTerminals(data);
             mapTerminalNames(data);
             setReviewTerminal(data[0].id)
         })

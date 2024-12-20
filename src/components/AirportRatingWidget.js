@@ -4,8 +4,7 @@ const AirportRatingWidget = ({airportToDisplay}) =>{
 
     const minReviewCount = 1;
 
-    const [airport,setAirport] = useState(airportToDisplay);
-    const [stats,setStats] = useState(null);
+    const [airport] = useState(airportToDisplay);
     const [rating,setRating] = useState(0);
     const [reviewCount,setReviewCount] = useState(0);
 
@@ -13,7 +12,6 @@ const AirportRatingWidget = ({airportToDisplay}) =>{
         fetch(`http://localhost:5115/airports/${airport.id}/stats`)
         .then((response) => response.json())
         .then((data) => {
-            setStats(data);
             if(data !== null){
                 setRating(data.averageRating);
                 setReviewCount(data.totalReviews);

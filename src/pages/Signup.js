@@ -1,7 +1,7 @@
 import Logo from "../components/Logo";
 import { useEffect, useState} from "react";
-import { useNavigate, useParams ,Link} from "react-router-dom";
-import { Route, Routes, useLocation} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 const SignupPage = () => {
 
@@ -40,15 +40,16 @@ const SignupPage = () => {
         });
     }
 
-    const onEmailNull = () =>{
-        naviation('/auth');
-    }
-
     useEffect(() =>{
+
+        const onEmailNull = () =>{
+            naviation('/auth');
+        }
+
         if (email == null){
             onEmailNull();
         }
-    },[]);
+    },[email,naviation]);
 
     const updateDisplayName = () =>{
         fetch("http://localhost:5115/account/displayname", {
