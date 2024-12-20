@@ -5,6 +5,7 @@ import AccountProvider from "../providers/AccountProvider";
 import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
 import NavBar from "../components/NavBar";
+import Snowfall from 'react-snowfall'
 
 const HomePage = () =>{
 
@@ -38,6 +39,7 @@ const HomePage = () =>{
 
     return (
         <div className="page-container">
+            <Snowfall snowflakeCount={500}></Snowfall>
             <div className="content">
                 <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
                     <NavBar enableSearch={false}></NavBar>
