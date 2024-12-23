@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom'
 import ConfigData from "../config.json"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'; 
 
 const SearchBar = ({style}) =>{
     const [airports,setAirports] = useState([]);
@@ -41,6 +43,7 @@ const SearchBar = ({style}) =>{
 
     return (
         <div className="search-bar" style={style} >
+            <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass}></FontAwesomeIcon>
             <textarea value={searchText} onChange={onSearchTextChange} placeholder="search by name or code"></textarea>
             <div className="search-results">
                 <ul>

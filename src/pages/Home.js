@@ -39,8 +39,8 @@ const HomePage = () =>{
 
     return (
         <div className="page-container">
-            <Snowfall snowflakeCount={500}></Snowfall>
-            <div className="content">
+            <Snowfall snowflakeCount={200} color="#F5F5F5"></Snowfall>
+            <div className="homepage-content">
                 <AccountProvider accountDetails={accountDetails} isTokenValid={isTokenValid}>
                     <NavBar enableSearch={false}></NavBar>
                 </AccountProvider> 
@@ -51,9 +51,6 @@ const HomePage = () =>{
                         <SearchBar id="searchBar"></SearchBar>
                     </div>
                 </div>
-            </div>
-            <div className="footer">
-                <p>privacy policy</p>
             </div>
         </div>
     );

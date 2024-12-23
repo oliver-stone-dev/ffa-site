@@ -183,6 +183,8 @@ body {
 }
 
 .logo-img{
+  padding-top: 10px;
+  padding-bottom: 5px;
   width: 220px;
 }
 
@@ -576,6 +578,14 @@ body {
   height: 100%;
   position: relative;
   box-sizing: border-box;
+  align-items: center;
+}
+.search-bar .search-icon{
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  padding-left: 15px;
+  color: #969696;
 }
 
 .search-bar textarea{
@@ -587,7 +597,7 @@ body {
   border-radius: 10px;
   border: none;
   font-family: "Alexandria", sans-serif;
-  padding-left: 25px;
+  padding-left: 45px;
   resize: none;
   background-color: #FCFCFC;
   font-size: 18px;
@@ -789,12 +799,26 @@ body {
 
 .page-container{
   width: 1000px;
+  display: flex;
+  flex-direction: column;
 }
 
+.homepage-content{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+}
+
+
 .search-banner {
+  position: relative;
+  flex-grow: 1;
   width: 100%;
-  background-color: #FFE46F;
   padding-bottom: 20px;
+  background-image: url("assets/background.png"),
+  linear-gradient(#ffe56f,#ffe56f00);
 }
 
 .search-container {
@@ -807,6 +831,8 @@ body {
   padding-bottom: 25px;
 }
 
+
+
 @media only screen and (max-width: 1022px){
   .search-container{
     width: 90%;
@@ -814,7 +840,7 @@ body {
 }
 
 .search-container h1{
-  font-size: 3.5em;
+  font-size: 4.5em;
   font-weight: 500;
   margin: 0px
 }
@@ -829,7 +855,7 @@ body {
 
 @media only screen and (max-width: 1022px){
   .search-container h1{
-    font-size: 2.5em;
+    font-size: 3.5em;
     font-weight: 600;
   }
 
