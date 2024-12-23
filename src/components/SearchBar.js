@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom'
+import ConfigData from "../config.json"
 
 const SearchBar = ({style}) =>{
     const [airports,setAirports] = useState([]);
@@ -23,7 +24,7 @@ const SearchBar = ({style}) =>{
         setSearchText(text);
                 
         //search api call
-        fetch("http://localhost:5115/airports?" + new URLSearchParams({
+        fetch(`${ConfigData.PROD_API_URL}/airports?` + new URLSearchParams({
             search: text,
         }).toString())
          .then(response => {

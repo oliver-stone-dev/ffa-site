@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ConfigData from "../config.json"
 
 const AirportRatingWidget = ({airportToDisplay}) =>{
 
@@ -9,7 +10,7 @@ const AirportRatingWidget = ({airportToDisplay}) =>{
     const [reviewCount,setReviewCount] = useState(0);
 
     useEffect(() =>{
-        fetch(`http://localhost:5115/airports/${airport.id}/stats`)
+        fetch(`${ConfigData.PROD_API_URL}/airports/${airport.id}/stats`)
         .then((response) => response.json())
         .then((data) => {
             if(data !== null){

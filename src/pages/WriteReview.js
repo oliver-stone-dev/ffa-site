@@ -6,6 +6,7 @@ import GetAccountDetails from "../services/AccountDetailsService"
 import AccountProvider from "../providers/AccountProvider";
 import NavBar from "../components/NavBar";
 import WriteReviewWidget from "../components/WriteReviewWidget";
+import ConfigData from "../config.json"
 
 const WriteReviewPage = () =>{
 
@@ -46,7 +47,7 @@ const WriteReviewPage = () =>{
             navigation('/auth');
         }
 
-        fetch(`http://localhost:5115/airports/${id}`)
+        fetch(`${ConfigData.PROD_API_URL}/airports/${id}`)
         .then((response) => response.json())
         .then((data) => setAirport(data))
         .catch(() =>{

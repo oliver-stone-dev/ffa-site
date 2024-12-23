@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import checkmark from "../assets/checkmark.png";
 import warning from "../assets/warning.png";
 import logoSmall from "../assets/logoSmall.png"
+import ConfigData from "../config.json"
 
 const TerminalReportWidget = ({terminalToReport}) =>{
 
@@ -44,7 +45,7 @@ const TerminalReportWidget = ({terminalToReport}) =>{
             }
         }
 
-        fetch("http://localhost:5115/report/alerts?" + new URLSearchParams({
+        fetch(`${ConfigData.PROD_API_URL}/report/alerts?`+ new URLSearchParams({
             terminalId: terminal.id
         }).toString())
         .then((response) => {
@@ -73,7 +74,7 @@ const TerminalReportWidget = ({terminalToReport}) =>{
         }
 
         const getReport = async (terminalId, accountId, reportType) =>{
-            const report = await fetch('http://localhost:5115/report?' + new URLSearchParams({
+            const report = await fetch(`${ConfigData.PROD_API_URL}/report?` + new URLSearchParams({
                 accountId: accountId,
                 terminalId: terminalId,
                 type : reportType 
@@ -106,7 +107,7 @@ const TerminalReportWidget = ({terminalToReport}) =>{
             return;
         }
 
-        fetch('http://localhost:5115/report',{
+        fetch(`${ConfigData.PROD_API_URL}/report`,{
                 method: "POST",
                 body: JSON.stringify({
                     "typeId": reportTypeId,

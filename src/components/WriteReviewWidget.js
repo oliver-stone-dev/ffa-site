@@ -7,6 +7,7 @@ import GetAccountDetails from "../services/AccountDetailsService"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+import ConfigData from "../config.json"
 
 const WriteReviewWidget = ({airportToReview}) =>{
 
@@ -51,7 +52,7 @@ const WriteReviewWidget = ({airportToReview}) =>{
             navigation('/auth');
         }
 
-        fetch(`http://localhost:5115/airports/${airport.id}/terminals`)
+        fetch(`${ConfigData.PROD_API_URL}/airports/${airport.id}/terminals`)
         .then((response) => response.json())
         .then((data) => {
             mapTerminalNames(data);
@@ -73,7 +74,7 @@ const WriteReviewWidget = ({airportToReview}) =>{
             comment: reviewText
         });
 
-        fetch('http://localhost:5115/reviews',{
+        fetch(`${ConfigData.PROD_API_URL}/reviews`,{
             method: "POST",
             body: bodyString,
             headers: {

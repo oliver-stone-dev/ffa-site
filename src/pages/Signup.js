@@ -2,6 +2,7 @@ import Logo from "../components/Logo";
 import { useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import ConfigData from "../config.json"
 
 const SignupPage = () => {
 
@@ -16,7 +17,7 @@ const SignupPage = () => {
     const onFormSubmit = (e) =>{
         e.preventDefault();
 
-        fetch("http://localhost:5115/register",{
+        fetch(`${ConfigData.PROD_API_URL}/register`,{
             method: "POST",
             body: JSON.stringify({
                 email: email,
@@ -52,7 +53,7 @@ const SignupPage = () => {
     },[email,naviation]);
 
     const updateDisplayName = () =>{
-        fetch("http://localhost:5115/account/displayname", {
+        fetch(`${ConfigData.PROD_API_URL}/account/displayname`, {
             method: "POST",
             body : JSON.stringify({
                 email: email,

@@ -3,6 +3,7 @@ import '../styles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { faThumbsDown } from "@fortawesome/free-regular-svg-icons";
+import ConfigData from "../config.json"
 
 const AirportReviewWidget = ({airportId, airportReview}) =>{
 
@@ -21,7 +22,7 @@ const AirportReviewWidget = ({airportId, airportReview}) =>{
     }
 
     useEffect(() =>{
-        fetch(`http://localhost:5115/airports/${reviewAiportId}/terminals?` + new URLSearchParams({
+        fetch(`${ConfigData.PROD_API_URL}/airports/${reviewAiportId}/terminals?` + new URLSearchParams({
             terminalId: review.terminalId
         }))
         .then((response) => response.json())
@@ -30,7 +31,7 @@ const AirportReviewWidget = ({airportId, airportReview}) =>{
 
         });
     
-        fetch(`http://localhost:5115/reviews/${review.id}/details?` + new URLSearchParams({
+        fetch(`${ConfigData.PROD_API_URL}/reviews/${review.id}/details?` + new URLSearchParams({
             accountId: review.accountId
         }))
         .then((response) => response.json())

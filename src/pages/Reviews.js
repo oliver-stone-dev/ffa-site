@@ -8,6 +8,7 @@ import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
 import AccountProvider from "../providers/AccountProvider";
 import NavBar from "../components/NavBar.js";
+import ConfigData from "../config.json"
 
 const ReviewsPage = () =>{
 
@@ -43,14 +44,14 @@ const ReviewsPage = () =>{
 
         getAccountDetails();
     
-        fetch(`http://localhost:5115/airports/${id}`)
+        fetch(`${ConfigData.PROD_API_URL}/airports/${id}`)
         .then((response) => response.json())
         .then((data) => setAirport(data))
         .catch(() =>{
 
         });
         
-        fetch(`http://localhost:5115/reviews?` + new URLSearchParams({
+        fetch(`${ConfigData.PROD_API_URL}/reviews?` + new URLSearchParams({
             airport:parseInt(id),
             terminal:0,
             offset:0,

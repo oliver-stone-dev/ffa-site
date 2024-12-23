@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom'
 import '../styles.css';
-
 import TokenVerifyService from "../services/TokenVerifyService"
 import GetAccountDetails from "../services/AccountDetailsService"
 import AccountProvider from "../providers/AccountProvider";
 import TerminalReportWidget from "../components/TerminalReportWidget";
 import AirportInfoWidget from "../components/AirportInfoWidget.js";
 import NavBar from "../components/NavBar";
+import ConfigData from "../config.json"
 
 const AiportPage = () =>{
     
@@ -70,14 +70,14 @@ const AiportPage = () =>{
 
         getAccountDetails();
     
-        fetch(`http://localhost:5115/airports/${id}`)
+        fetch(`${ConfigData.PROD_API_URL}/airports/${id}`)
         .then((response) => response.json())
         .then((data) => setAirport(data))
         .catch(() =>{
 
         });
 
-        fetch(`http://localhost:5115/airports/${id}/terminals`)
+        fetch(`${ConfigData.PROD_API_URL}/airports/${id}/terminals`)
         .then((response) => response.json())
         .then((data) => {
             setTerminals(data);

@@ -1,6 +1,7 @@
 import Logo from "../components/Logo";
 import { useState} from "react";
 import { useNavigate} from "react-router-dom";
+import ConfigData from "../config.json"
 
 const AuthPage = () => {
 
@@ -10,7 +11,7 @@ const AuthPage = () => {
     const onFormSubmit = (e) =>{
         e.preventDefault();
 
-        fetch(`http://localhost:5115/account/exists?` + new URLSearchParams({
+        fetch(`${ConfigData.PROD_API_URL}/account/exists?` + new URLSearchParams({
             email: emailAddress
         }))
         .then((response) => response.json())

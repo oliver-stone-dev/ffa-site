@@ -2,6 +2,7 @@ import Logo from "../components/Logo";
 import { useEffect, useState} from "react";
 import { useNavigate ,Link} from "react-router-dom";
 import { useLocation} from 'react-router-dom';
+import ConfigData from "../config.json"
 
 const LoginPage = () => {
 
@@ -17,7 +18,7 @@ const LoginPage = () => {
 
         localStorage.removeItem('accessToken');
         
-        fetch("http://localhost:5115/login",{
+        fetch(`${ConfigData.PROD_API_URL}/login`,{
             method: "POST",
             body: JSON.stringify({
                 email: email,
