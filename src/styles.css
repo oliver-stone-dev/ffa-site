@@ -578,7 +578,6 @@ body {
   height: 100%;
   position: relative;
   box-sizing: border-box;
-  align-items: center;
 }
 .search-bar .search-icon{
   position: absolute;
@@ -586,6 +585,7 @@ body {
   padding: 0;
   padding-left: 15px;
   color: #969696;
+  padding-top: 1.1em;
 }
 
 .search-bar textarea{
