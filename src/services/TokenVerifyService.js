@@ -1,6 +1,8 @@
+import ConfigData from "../config.json"
+
 const IsAccessTokenValid = async (tokenType, accessToken) => {
     try{
-        const response = await fetch("http://localhost:5115/manage/info", {
+        const response = await fetch(`${ConfigData.PROD_API_URL}/manage/info`, {
             headers:{
                 "Content-type": "application/json",
                 "accept": "text/plain",

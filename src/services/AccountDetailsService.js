@@ -1,6 +1,8 @@
+import ConfigData from "../config.json"
+
 const GetAccountDetails = async (tokenType, accessToken) =>{
     try{
-        const details = await fetch("http://localhost:5115/account", {
+        const details = await fetch(`${ConfigData.PROD_API_URL}/account`, {
             headers:{
                 "Content-type": "application/json",
                 "accept": "text/plain",
