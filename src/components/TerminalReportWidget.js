@@ -237,7 +237,7 @@ const TerminalReportWidget = ({terminalToReport}) =>{
             return (
                 <div className="terminal-report-widget-closed">
                     <div className="terminal-grid-container">
-                        <div className="name-item"><h3>{terminal.name}</h3></div>
+                        <div className="name-item"><h3>Terminal {terminal.name}</h3></div>
                         <div onClick={onOpenPressed} className="expand-button-item"><FontAwesomeIcon icon={faCaretDown} /></div>
                     </div>
                 </div>
