@@ -1,6 +1,0 @@
-{
-    "LOCAL_API": "http://localhost:7199",
-    "AZURE_WEB_API": "https://film-friendly-airports-app20241223113625.azurewebsites.net",
-    "AZURE_FUNCTIONS_API" : "https://ffa-function-app.azurewebsites.net",
-    "PROD_API_URL": "https://ffa-function-app.azurewebsites.net" 
-}
