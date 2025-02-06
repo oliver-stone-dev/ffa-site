@@ -48,7 +48,7 @@ const SearchBar = ({style}) =>{
             <div className="search-results">
                 <ul>
                     {
-                        (airports !== null || airports.length > 0)?
+                        (airports !== null)?
                         airports.map((airport) => <li key={airport.id}>
                             <Link className="result-link" to={`/airports/${airport.id}`}>
                             {airport.name}
