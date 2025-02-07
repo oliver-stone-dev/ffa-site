@@ -24,7 +24,11 @@ const SearchBar = ({style}) =>{
         }
         
         setSearchText(text);
-                
+        searchForAirports(text);
+            
+    }
+
+    const searchForAirports = (text) =>{
         //search api call
         fetch(`${ConfigData.PROD_API_URL}/airports?` + new URLSearchParams({
             search: text,
@@ -44,7 +48,7 @@ const SearchBar = ({style}) =>{
     return (
         <div className="search-bar" style={style} >
             <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass}></FontAwesomeIcon>
-            <textarea value={searchText} onChange={onSearchTextChange} placeholder="search by name or code"></textarea>
+            <textarea value={searchText} onChange={onSearchTextChange} onClick={onSearchTextChange} placeholder="search by name or code"></textarea>
             <div className="search-results">
                 <ul>
                     {
