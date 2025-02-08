@@ -13,7 +13,6 @@ const IsAccessTokenValid = async (tokenType, accessToken) => {
         return response.ok;
     }
     catch(error){
-        console.log(error);
         return false;
     }
 }
