@@ -100,7 +100,7 @@ body {
   display: flex;
   margin: 0px;
   flex-direction: row;
-  padding-right: 40px;
+  padding-right: 25px;
   align-items: center;
   padding-left: 20px;
 }
@@ -222,6 +222,7 @@ body {
     display:flex;
     width: 100%;
     align-items: center;
+    
   }
   
   .nav-bar-mobile{
@@ -235,13 +236,21 @@ body {
     padding: 0;
     margin: 0;
     padding-left: 15px;
-    width: 185;
+    width: 185px;
     min-width: 185px;
   }
   
   .logo h1{
     font-size: 20px;
   }
+
+  .logo-img{
+    padding-top: 10px;
+    padding-bottom: 5px;
+    width: 180px;
+  }
+  
+  
 }
 
 .logo-link{
