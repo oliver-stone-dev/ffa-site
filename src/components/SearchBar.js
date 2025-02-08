@@ -45,10 +45,19 @@ const SearchBar = ({style}) =>{
          });
     }
 
+    const pingSearch = () =>{
+        fetch(`${ConfigData.PROD_API_URL}/airports?` + new URLSearchParams({
+            search: "london",
+        }).toString())
+         .catch(error => {
+            //errors
+         });
+    }
+
     return (
-        <div className="search-bar" style={style} >
+        <div className="search-bar" style={style}>
             <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass}></FontAwesomeIcon>
-            <textarea value={searchText} onChange={onSearchTextChange} onClick={onSearchTextChange} placeholder="search by name or code"></textarea>
+            <textarea value={searchText} onChange={onSearchTextChange} onFocus={pingSearch} placeholder="search by name or code"></textarea>
             <div className="search-results">
                 <ul>
                     {
